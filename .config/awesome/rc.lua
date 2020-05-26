@@ -17,26 +17,27 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local power = require("power_widget")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
+-- {{{ error handling
+-- check if awesome encountered an error during startup and fell back to
+-- another config (this code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
+                     title = "oops, there were errors during startup!",
                      text = awesome.startup_errors })
 end
 
--- Handle runtime errors after startup
+-- handle runtime errors after startup
 do
     local in_error = false
     awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
+        -- make sure we don't go into an endless error loop
         if in_error then return end
         in_error = true
 
         naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
+                         title = "oops, an error happened!",
                          text = tostring(err) })
         in_error = false
     end)
@@ -45,7 +46,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/marko/.config/awesome/theme.lua")
+beautiful.init(os.getenv("HOME").."/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "termite"
@@ -66,14 +67,14 @@ awful.layout.layouts = {
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
+    --awful.layout.suit.fair,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    -- bawful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -172,7 +173,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "main", "www", "dev", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[0])
+    awful.tag({ "∮", "√", "∞", "∃", "∇", "∿", "Δ", "=", "Δ" }, s, awful.layout.layouts[2])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -207,6 +208,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+            s.mylayoutbox,
 	    -- praisewidget,
             s.mytaglist,
             s.mypromptbox,
@@ -214,10 +216,10 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+			power,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
         },
     }
 end)
@@ -332,6 +334,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
+    -- Rename Tag
     awful.key({ modkey, "Shift", }, "r",
 		function ()
 			awful.prompt.run {
@@ -341,7 +344,15 @@ globalkeys = gears.table.join(
 				exe_callback = function (s) awful.tag.selected().name = s end,
 			}
 		end,
-		{description = "rename tag", group = "tag"})
+		{description = "rename tag", group = "tag"}),
+
+    -- Hide / show wibox
+    awful.key({ modkey }, "b",
+    		function ()
+			myscreen = awful.screen.focused()
+			myscreen.mywibox.visible = not myscreen.mywibox.visible
+		end,
+		{description = "toggle statusbar", group = "layout"})
 )
 
 clientkeys = gears.table.join(
@@ -577,3 +588,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Run start up scripts
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")

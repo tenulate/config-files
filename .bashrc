@@ -38,6 +38,9 @@ esac
 # when "sudo" is the first word entered in the terminal
 complete -cf sudo
 
+# Update path to run ruby gems
+PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
+
 # Source personal settings
 SETTINGS_DIR="${HOME}/.config/bash"
 [[ -r ${SETTINGS_DIR}/alias.sh ]] && . ${SETTINGS_DIR}/alias.sh
