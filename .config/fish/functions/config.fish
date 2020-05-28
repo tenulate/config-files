@@ -1,5 +1,4 @@
-# Save config files to a bare git repository
-function config
+function config -d "Save config files to bare git respository"
 	set CONFIG_DIR "$HOME/.dotfiles"
 	/usr/bin/git --git-dir=$CONFIG_DIR --work-tree=$HOME $argv
 	# To set up repository, run these 2 commands

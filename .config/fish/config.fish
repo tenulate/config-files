@@ -28,3 +28,4 @@
 #           "*$bd$$$$      '*$$$$$$$$$$$o+#" 
 #                """"          """"""" 
 
+source ~/script/ssh_find_agent.fish
