@@ -8,3 +8,5 @@ function run {
 }
 
 run setxkbmap -option ctrl:swapcaps
+run xmodmap ~/.Xmodmap
+. ~/script/monitor.sh
