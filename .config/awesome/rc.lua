@@ -110,7 +110,7 @@ local browser      = os.getenv("BROWSER") or "firefox"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5" }
+awful.util.tagnames = { "www", "dev", "doc", "foo", "bar" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -535,6 +535,10 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "a", function () awful.spawn(gui_editor) end,
               {description = "run gui editor", group = "launcher"}),
 
+    awful.key({ modkey }, "p", function ()
+            os.execute(string.format("rofi -show %s", 'run'))
+        end,
+        {description = "show rofi", group = "launcher"}),
     -- Default
     --[[ Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,

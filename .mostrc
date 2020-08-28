@@ -22,7 +22,7 @@
 color normal white black
 color status black green
 color underline yellow black
-color overstrike brightgreen black
+color overstrike brightblue black
 
 % Keybindings
 
