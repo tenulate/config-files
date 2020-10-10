@@ -95,10 +95,11 @@ local themes = {
     "powerarrow-dark",
     "rainbow",
     "steamburn",
+    "thunder",
     "vertex",
 }
 
-local chosen_theme = "multicolor"
+local chosen_theme = "thunder"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite"
