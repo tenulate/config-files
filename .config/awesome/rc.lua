@@ -94,12 +94,13 @@ local themes = {
     "powerarrow",
     "powerarrow-dark",
     "rainbow",
+    "retrowave",
     "steamburn",
     "thunder",
     "vertex",
 }
 
-local chosen_theme = "thunder"
+local chosen_theme = "retrowave"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite"
@@ -111,7 +112,7 @@ local browser      = os.getenv("BROWSER") or "firefox"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "www", "dev", "doc", "foo", "bar" }
+awful.util.tagnames = { "🖬", "🖭", "🖧", "🖫", "🖵" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -371,13 +372,19 @@ globalkeys = my_table.join(
 
     -- Show/Hide Wibox
     awful.key({ modkey }, "b", function ()
-            for s in screen do
-                s.mywibox.visible = not s.mywibox.visible
-                if s.mybottomwibox then
-                    s.mybottomwibox.visible = not s.mybottomwibox.visible
-                end
+            local s = awful.screen.focused()
+            s.mywibox.visible = not s.mywibox.visible
+            if s.mybottomwibox then
+                s.mybottomwibox.visible = not s.mybottomwibox.visible
             end
         end,
+            --for s in screen do
+                --s.mywibox.visible = not s.mywibox.visible
+                --if s.mybottomwibox then
+                    --s.mybottomwibox.visible = not s.mybottomwibox.visible
+                --end
+            --end
+        --end,
         {description = "toggle wibox", group = "awesome"}),
 
     -- On the fly useless gaps change
@@ -786,8 +793,14 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = vi_focus})
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c)
+    c.border_color = beautiful.border_focus
+    c.opacity = 1.0
+end)
+client.connect_signal("unfocus", function(c)
+    c.border_color = beautiful.border_normal
+    c.opacity = 0.95
+end)
 
 -- Run start up scripts
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
