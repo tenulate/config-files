@@ -117,7 +117,7 @@ local markup = lain.util.markup
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup(colour.purple3, "%A %d %B ") .. markup(colour.purple2, ">") .. markup(colour.white, " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup(colour.purple2, "[") .. markup(colour.purple3, " %a %d %b ") .. markup(colour.purple2, "]") .. markup(colour.white, " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -216,7 +216,7 @@ theme.volume = lain.widget.alsa({
             volume_now.level = volume_now.level .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, colour.gray3, volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, colour.white, volume_now.level .. "% "))
     end
 })
 
@@ -232,7 +232,7 @@ local netupinfo = lain.widget.net({
             theme.weather.update()
         end
 
-        widget:set_markup(markup.fontfg(theme.font, colour.purple2, net_now.sent .. " "))
+        widget:set_markup(markup.fontfg(theme.font, colour.purple3, net_now.sent .. " "))
         netdowninfo:set_markup(markup.fontfg(theme.font, colour.purple3, net_now.received .. " "))
     end
 })
@@ -340,13 +340,13 @@ function theme.at_screen_connect(s)
             cpu.widget,
             --fsicon,
             --theme.fs.widget,
-            weathericon,
-            theme.weather.widget,
-            tempicon,
-            temp.widget,
+            --weathericon,
+            --theme.weather.widget,
+            --tempicon,
+            --temp.widget,
             baticon,
             bat.widget,
-            clockicon,
+            --clockicon,
             mytextclock,
         },
     }
