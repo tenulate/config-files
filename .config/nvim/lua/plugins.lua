@@ -41,15 +41,53 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- Package manager
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  -- Have packer manage itself
+  use "wbthomason/packer.nvim"
+
+  -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/popup.nvim"
+
+  -- colour schemes
   use 'morhetz/gruvbox'
   use { "catppuccin/nvim", as = "catppuccin" }
-  use 'pangloss/vim-javascript'
+  use 'Mofiqul/dracula.nvim'
+  use 'folke/tokyonight.nvim'
+
+  -- status bar eye candy
   use 'itchyny/lightline.vim'
-  use 'itchyny/vim-gitbranch'
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+  -- fuzzy find over files
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.5',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  -- Tree sitter sets up an abstract syntax tree to identify code structure,
+  -- used in highlighting or colouring text and more
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
+  -- Neo tree is a file explorer
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+  }
+
+
+  -- To reimplement once I know what they do
+  -- use 'pangloss/vim-javascript'
+  -- use 'itchyny/vim-gitbranch'
+  -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
   -- LSP
   use 'neovim/nvim-lspconfig'

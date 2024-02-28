@@ -5,7 +5,8 @@ local default_options = { noremap = true, silent = true }
 local function keymap_generator (mode)
   local function keymap (key, operation, options)
     if options == nil then options = default_options end
-    vim.api.nvim_set_keymap(mode, key, operation, options)
+    --vim.api.nvim_set_keymap(mode, key, operation, options)
+    vim.keymap.set(mode, key, operation, options)
   end
   return keymap
 end

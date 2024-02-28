@@ -28,13 +28,14 @@ vmap('<C-l>', '<esc>')
 xmap('<C-l>', '<esc>')
 
 -- Explore files in directory
-nmap('<leader>e', ':Lexplore<CR>')
+-- (replaced with neotree)
+--nmap('<leader>e', ':Lexplore<CR>')
 
 -- stay in visual mode when indenting
 vmap("<", "<gv")
 vmap(">", ">gv")
 -- remove search highlighting
-nmap('<leader>hs', ':let @/=""<CR>')
+nmap('<leader>/', ':let @/=""<CR>')
 
 -- move text up/down
 -- TODO: fix for when trying to move above/below file limits

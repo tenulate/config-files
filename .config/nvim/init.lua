@@ -4,6 +4,9 @@ require 'keymaps'
 require 'plugins'
 require 'colourscheme'
 require 'vimwiki'
+require 'telescope'
+require 'treesitter'
+require 'neotree'
 
 require 'lspconfig'.pyright.setup{}
 require 'lspconfig'.tsserver.setup{}
