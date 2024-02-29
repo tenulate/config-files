@@ -1,6 +1,4 @@
--- Convenience functions used in configuration files
-
--- Shorten function names
+-- Shorten keymapping function names
 local default_options = { noremap = true, silent = true }
 local function keymap_generator (mode)
   local function keymap (key, operation, options)

@@ -1,5 +1,4 @@
-require 'utils'
+require 'keymap-helper'
 require 'options'
 require 'keymaps'
-
-require 'package_manager_lazy'
+require 'package-manager-lazy'

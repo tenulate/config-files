@@ -1,20 +1,25 @@
 local options = {
   fileencoding = "utf-8",
+
   splitright = true,
   splitbelow = true,
   colorcolumn = '80',
+
   expandtab = true,
   autoindent = true,
   shiftwidth = 2,
   tabstop = 2,
   softtabstop = 2,
   numberwidth = 4,
+
   relativenumber = true,
   number = true,
+
   ignorecase = true,
   smartcase = true,
   incsearch = true,
   hidden = true,
+
   backup = false,
   writebackup = false,
   wrap = false,
