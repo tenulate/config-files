@@ -3,7 +3,7 @@ local options = {
 
   splitright = true,
   splitbelow = true,
-  colorcolumn = '80',
+  colorcolumn = "80",
 
   expandtab = true,
   autoindent = true,
@@ -26,21 +26,21 @@ local options = {
   cursorline = true,
   cursorcolumn = true,
   termguicolors = true,
-  signcolumn = 'yes',
-  completeopt = {'menuone', 'noinsert', 'noselect'},
-  mouse = 'a',
+  signcolumn = "yes",
+  completeopt = { "menuone", "noinsert", "noselect" },
+  mouse = "a",
   updatetime = 750,
   cmdheight = 1,
   scrolloff = 8,
   sidescrolloff = 8,
-  shortmess = vim.opt.shortmess:append 'c',
-  diffopt = vim.opt.diffopt:append 'vertical',
-  guicursor = vim.opt.guicursor:append 'i:block-blinkwait20-blinkon400-blinkoff200',
+  --shortmess = vim.opt.shortmess:append 'c',
+  diffopt = vim.opt.diffopt:append("vertical"),
+  --guicursor = vim.opt.guicursor:append 'i:block-blinkwait20-blinkon400-blinkoff200',
 }
 
 vim.g.netrw_banner = 0
-vim.g.markdown_fenced_languages = {'javascript', 'js=javascript', 'json=javascript'}
-vim.cmd [[filetype plugin on]]
+vim.g.markdown_fenced_languages = { "javascript", "js=javascript", "json=javascript" }
+vim.cmd([[filetype plugin on]])
 
 for k, v in pairs(options) do
   vim.opt[k] = v
