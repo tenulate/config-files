@@ -25,9 +25,12 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.tsserver.setup({})
-			lspconfig.pyright.setup({})
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- language servers
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.pyright.setup({ capabilities = capabilities })
+			-- key bindings
 			nmap("K", vim.lsp.buf.hover, {})
 			nmap("gd", vim.lsp.buf.definition, {})
 			nmap("<leader>ca", vim.lsp.buf.code_action, {})
